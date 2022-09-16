@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, redirect
 from classes.unit import unit
 from classes.arena import Arena
 from write_log import open_log_file, write_log, close_log_file
-from utills import create_enemy, create_hero, choose_unit_hero, choose_unit_enemy
+from utils import create_enemy, create_hero, choose_unit_hero, choose_unit_enemy
 
 
 app = Flask(__name__)
@@ -20,6 +20,7 @@ elif os.environ.get('APP_CONFIG') == 'production':
     from config import ProductConfig
     app.config.from_object(ProductConfig)
 
+app.app_context().push()
 
 app.secret_key = app.config.get('SECRET_KEY')
 arena = Arena()

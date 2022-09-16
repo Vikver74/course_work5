@@ -1,16 +1,13 @@
 import json
 from typing import Dict
+import os.path
 
 import marshmallow_dataclass
 from marshmallow_dataclass import dataclass
 
 from classes.class_person import BaseClassPerson, classes_person_dict
 from classes.equipment import Armor, Weapon
-
-
-# PATH_FILE_EQUIPMENT = app_context.config.get('PATH')
-
-PATH_FILE_EQUIPMENT = 'data/equipment.json'
+from constants import PATH_TO_EQUIPMENTS, FILE_NAME_EQUIPMENTS
 
 
 @dataclass
@@ -25,7 +22,10 @@ ArmorSchema = marshmallow_dataclass.class_schema(Armor)
 
 
 def create_unit() -> Unit:
-    with open(PATH_FILE_EQUIPMENT, encoding='utf-8') as file:
+    if not os.path.exists(os.path.join(PATH_TO_EQUIPMENTS, FILE_NAME_EQUIPMENTS)):
+        raise FileNotFoundError
+
+    with open(os.path.join(PATH_TO_EQUIPMENTS, FILE_NAME_EQUIPMENTS), encoding='utf-8') as file:
         equipments = json.load(file)
         weapon_dict = {}
         armor_dict = {}

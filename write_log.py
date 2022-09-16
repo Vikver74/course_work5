@@ -1,5 +1,6 @@
 from typing.io import TextIO
 from datetime import datetime
+from constants import FILE_NAME_LOG
 
 
 log_file: TextIO
@@ -7,7 +8,7 @@ log_file: TextIO
 
 def open_log_file() -> None:
     global log_file
-    log_file = open('game.log', 'a', encoding='utf-8')
+    log_file = open(FILE_NAME_LOG, 'a', encoding='utf-8')
     text = f'{get_datetime()}   Игра начата\n'
     write_log(text)
 

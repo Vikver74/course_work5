@@ -1,7 +1,5 @@
 from classes.person import BasePerson
-
-
-STAMINA_PER_TURN = 1
+from constants import STAMINA_PER_TURN
 
 
 class Singleton(type):
@@ -24,9 +22,6 @@ class Arena(metaclass=Singleton):
         self.is_play = True
 
     def hit(self) -> str:
-        if not self.is_play:
-            return 'Игра окончена'
-
         result_hero: str = self.hero.hit(self.enemy)
         if self._check_health(self.enemy) <= 0:
             result: str = result_hero + f' {self.hero.name} победил!'
@@ -45,9 +40,6 @@ class Arena(metaclass=Singleton):
         return result
 
     def use_skill(self) -> str:
-        if not self.is_play:
-            return 'Игра окончена'
-
         if self.hero.is_used_skill:
             return f'{self.hero.name} уже использовал {self.hero.base_class_person.skill.name}'
 
@@ -69,9 +61,6 @@ class Arena(metaclass=Singleton):
         return result
 
     def skip_move(self) -> str:
-        if not self.is_play:
-            return 'Игра окончена'
-
         result: str = self.enemy.hit(self.hero)
         if self._check_health(self.hero) <= 0:
             self.is_play = False

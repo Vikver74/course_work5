@@ -1,0 +1,4 @@
+PATH_TO_EQUIPMENTS = 'data'
+FILE_NAME_EQUIPMENTS = 'equipment.json'
+FILE_NAME_LOG = 'game.log'
+STAMINA_PER_TURN = 1

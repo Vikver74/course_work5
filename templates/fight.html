@@ -19,12 +19,12 @@
             <p><em>Информация:</em></p>
             <hr>
             <p>Очки здоровья: {{ heroes.hero.health_points }}/{{ heroes.hero.base_class_person.max_health }}</br> Очки выносливости:
-              {{ heroes.hero.stamina_points }}/{{ heroes.hero.base_class_person.max_stamina }}</p>
+              {{ heroes.hero.stamina_points }}/{{ heroes.hero.base_class_person.max_stamina }} </p>
           </div>
           <div class="col align-self-center">
-            <button type="button" onclick="window.location.href='/fight/hit'" class="btn btn-success m-2">Нанести удар</button></br>
-            <button type="button" onclick="window.location.href='/fight/use-skill'" class="btn btn-danger m-2">Использовать умение</button></br>
-            <button type="button" onclick="window.location.href='/fight/pass-turn'" class="btn btn-warning m-2">Пропустить ход</button></br>
+            <button id="hit" type="button" onclick="window.location.href='/fight/hit'" class="btn btn-success m-2">Нанести удар</button></br>
+            <button id="use_skill"  type="button" onclick="window.location.href='/fight/use-skill'" class="btn btn-danger m-2">Использовать умение</button></br>
+            <button id="skip_move" type="button" onclick="window.location.href='/fight/pass-turn'" class="btn btn-warning m-2">Пропустить ход</button></br>
             <button type="button" onclick="window.location.href='/fight/end-fight'" class="btn btn-secondary m-2">Завершить бой</button>
           </div>
           <div class="col align-self-start">
@@ -52,5 +52,12 @@
         <hr>
       </div>
     </main>
+    {% if not heroes.is_play %}
+    <script>
+      document.getElementById('hit').setAttribute("disabled", true)
+      document.getElementById('use_skill').setAttribute("disabled", true)
+      document.getElementById('skip_move').setAttribute("disabled", true)
+    </script>
+    {% endif %}
   </body>
 </html>
