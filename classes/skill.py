@@ -12,12 +12,12 @@ class Skill(ABC):
 
     @property
     @abstractmethod
-    def name(self):
+    def name(self) -> str:
         raise NotImplementedError
 
     @property
     @abstractmethod
-    def damage(self):
+    def damage(self) -> float:
         raise NotImplementedError
 
     @property
@@ -26,7 +26,7 @@ class Skill(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def skill_effect(self):
+    def skill_effect(self) -> str:
         raise NotImplementedError
 
     def use_skill(self, user: BasePerson, target: BasePerson) -> str:

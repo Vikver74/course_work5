@@ -15,31 +15,31 @@ class BasePerson(ABC):
         self._is_used_skill: bool = False
 
     @property
-    def health_points(self):
+    def health_points(self) -> float:
         return self._health_points
 
     @health_points.setter
-    def health_points(self, points: float):
+    def health_points(self, points: float) -> None:
         self._health_points = points
 
     @property
-    def stamina_points(self):
+    def stamina_points(self) -> float:
         return self._stamina_points
 
     @stamina_points.setter
-    def stamina_points(self, points: float):
+    def stamina_points(self, points: float) -> None:
         self._stamina_points = points
 
     @property
-    def is_used_skill(self):
+    def is_used_skill(self) -> bool:
         return self._is_used_skill
 
     @abstractmethod
-    def hit(self, target):
+    def hit(self, target) -> str:
         raise NotImplementedError
 
     @abstractmethod
-    def use_skill(self, target):
+    def use_skill(self, target) -> str:
         raise NotImplementedError
 
     def _check_is_used_skill(self) -> bool:
